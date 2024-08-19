@@ -1,16 +1,9 @@
-import { getUrlParams } from "./getUrlParams.js";
-type GetParamsType = {
-  [key: string]: string | number | boolean | null | undefined;
-};
-/** Simple wrapper where parameters are simple enough to fit in GET
- *
- * Please note that it parses query params without a schema, causing it to be a bit flaky.
- *
- * However, it can also reduce LOC a lot! Use wisely.
+/**
+ * Simple wrapper to make a JSON function
  */
-export const jsonGetter =
+export const jsonPost =
   (fn: (context: any) => any) => async (request: Request) => {
-    const context = getUrlParams(request.url);
+    const context = await request.json();
     const result = await fn(context);
 
     if (!result) {

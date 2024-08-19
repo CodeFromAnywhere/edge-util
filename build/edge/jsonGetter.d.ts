@@ -4,7 +4,5 @@
  *
  * However, it can also reduce LOC a lot! Use wisely.
  */
-export declare const jsonGetter: (fn: (context: {
-    [key: string]: string | number | boolean | null | undefined;
-}) => any) => (request: Request) => Response;
+export declare const jsonGetter: (fn: (context: any) => any) => (request: Request) => Promise<Response>;
 //# sourceMappingURL=jsonGetter.d.ts.map
