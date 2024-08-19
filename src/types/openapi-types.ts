@@ -1,4 +1,4 @@
-import { OpenAPIV3_1 } from "openapi-types";
+import type { OpenAPIV3_1 } from "openapi-types";
 type NonFunctionKeyNames<T> = Exclude<
   {
     [key in keyof T]: T[key] extends Function ? never : key;
@@ -6,6 +6,7 @@ type NonFunctionKeyNames<T> = Exclude<
   undefined
 >;
 
+// cannot use namespace as a type
 type RemoveFunctions<T> = Pick<T, NonFunctionKeyNames<T>>;
 
 export type OpenapiDocument = RemoveFunctions<OpenAPIV3_1.Document>;

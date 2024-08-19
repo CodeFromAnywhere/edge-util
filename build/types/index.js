@@ -11,6 +11,7 @@ export * from "./marked-types/index.js";
 export * from "./matter-types/index.js";
 export * from "./model-types/index.js";
 export * from "./types.js";
+export * from "./openapi-types.js";
 export * from "./O.js";
 export * from "./recursive-types/index.js";
 export * from "./schema-types/index.js";

@@ -60,4 +60,5 @@ export * from "./filename-conventions/index.js";
 export * from "./fs-util-js/index.js";
 export * from "./measure-performance/index.js";
 export * from "./types/index.js";
+export * from "./edge/index.js";
 //# sourceMappingURL=index.js.map

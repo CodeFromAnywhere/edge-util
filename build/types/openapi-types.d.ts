@@ -1,4 +1,4 @@
-import { OpenAPIV3_1 } from "openapi-types";
+import type { OpenAPIV3_1 } from "openapi-types";
 type NonFunctionKeyNames<T> = Exclude<{
     [key in keyof T]: T[key] extends Function ? never : key;
 }[keyof T], undefined>;
