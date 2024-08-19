@@ -2,7 +2,7 @@
   "name": "edge-util",
   "description": "Useful utilities for JS, TS, but primarily for edge.",
   "main": "build/index.js",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "type": "module",
   "peerDependencies": {
     "typescript": "^5.0.0"
