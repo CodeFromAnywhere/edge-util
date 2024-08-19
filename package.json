@@ -1,0 +1,22 @@
+{
+  "name": "edge-util",
+  "description": "Useful utilities for JS, TS, but primarily for edge.",
+  "main": "build/index.js",
+  "version": "0.0.7",
+  "type": "module",
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
+    "openapi-types": "^12.1.3"
+  },
+  "dependencies": {
+    "emoji-regex": "10.3.0",
+    "js-yaml": "4.1.0"
+  },
+  "scripts": {
+    "up": "npm version patch -f",
+    "pub": "yarn up && npm publish"
+  }
+}
