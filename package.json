@@ -2,7 +2,7 @@
   "name": "edge-util",
   "description": "Useful utilities for JS, TS, but primarily for edge.",
   "main": "build/index.js",
-  "version": "0.0.31",
+  "version": "0.0.32",
   "peerDependencies": {},
   "devDependencies": {
     "@types/js-yaml": "^4.0.9",
