@@ -3,11 +3,13 @@
  *
  * Assumes QSTASH_TOKEN and CRON_SECRET exist.
  */
-export declare const upstashFanOut: (request: Request, endpoint: string, context: any[]) => Promise<{
+export declare const upstashFanOut: (destination: string, context: any[]) => Promise<({
     error: string;
     data?: undefined;
 } | {
     error: undefined;
     data: any;
+})[] | {
+    error: string;
 }>;
 //# sourceMappingURL=upstashFanOut.d.ts.map
