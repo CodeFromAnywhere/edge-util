@@ -1,10 +1,13 @@
-const removeCommentsRegex = /\\"|"(?:\\"|[^"])*"|(\/\/.*|\/\*[\s\S]*?\*\/)/g;
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.tryParseJson = void 0;
+var removeCommentsRegex = /\\"|"(?:\\"|[^"])*"|(\/\/.*|\/\*[\s\S]*?\*\/)/g;
 /**
  * if text isn't json, returns null
  */
-export const tryParseJson = (text, logParseError) => {
+var tryParseJson = function (text, logParseError) {
     try {
-        const jsonStringWithoutComments = text.replace(removeCommentsRegex, (m, g) => (g ? "" : m));
+        var jsonStringWithoutComments = text.replace(removeCommentsRegex, function (m, g) { return (g ? "" : m); });
         return JSON.parse(jsonStringWithoutComments);
     }
     catch (parseError) {
@@ -13,4 +16,5 @@ export const tryParseJson = (text, logParseError) => {
         return null;
     }
 };
+exports.tryParseJson = tryParseJson;
 //# sourceMappingURL=tryParseJson.js.map

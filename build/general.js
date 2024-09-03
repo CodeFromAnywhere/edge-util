@@ -1,11 +1,28 @@
-import { mergeObjectsArray } from "./mergeObjectsArray.js";
-export const noEmptyString = (input) => {
+"use strict";
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.sumAllKeys = exports.sumObjectParameters = exports.getObjectFromParamsString = exports.takeFirst = exports.makeArray = exports.onlyDuplicates = exports.onlyUnique2 = exports.isAllTrue = exports.groupByKey = exports.createEnum = exports.apply = exports.sum = exports.noEmptyString = void 0;
+exports.onlyUnique = onlyUnique;
+exports.notEmpty = notEmpty;
+var mergeObjectsArray_js_1 = require("./mergeObjectsArray.js");
+var noEmptyString = function (input) {
     if (input === "")
         return undefined;
     return input;
 };
-export const sum = (items) => {
-    const total = items.reduce((total, num) => {
+exports.noEmptyString = noEmptyString;
+var sum = function (items) {
+    var total = items.reduce(function (total, num) {
         if (typeof num !== "number") {
             console.log("WTF", num);
         }
@@ -13,17 +30,19 @@ export const sum = (items) => {
     }, 0);
     return total;
 };
+exports.sum = sum;
 // sum([1, 2, 3]);
 /**
  * function that takes an array of functions and applies them one by one, on the value or the result of the previous function. Only possible if the type of the value stays the same.
  *
  * NB: don't do just "T" as this conflicts in tsx files.
  */
-export const apply = (functions, value) => {
-    return functions.reduce((val, fn) => {
+var apply = function (functions, value) {
+    return functions.reduce(function (val, fn) {
         return fn(val);
     }, value);
 };
+exports.apply = apply;
 /**
  * creates an enum object from a readonly const array so you don't have to
  * ------
@@ -32,9 +51,13 @@ export const apply = (functions, value) => {
  * const enummm = createEnum(taskNames);
  * (value of enummm: { a: "a", b: "b", c: "c" })
  */
-export const createEnum = (array) => array.reduce((previous, current) => {
-    return { ...previous, [current]: current };
-}, {});
+var createEnum = function (array) {
+    return array.reduce(function (previous, current) {
+        var _a;
+        return __assign(__assign({}, previous), (_a = {}, _a[current] = current, _a));
+    }, {});
+};
+exports.createEnum = createEnum;
 /**
  * key should be of type string!
  *
@@ -42,11 +65,11 @@ export const createEnum = (array) => array.reduce((previous, current) => {
  * groupByKey(input, "path")
  * ouput: { xyz: [{path:"xyz"},{path:"xyz"}], abc: [{path:"abc"}]}
  */
-export const groupByKey = (array, key) => {
-    return array.reduce((all, item) => {
-        const newAll = all;
-        const keyToUse = item[key];
-        const already = newAll[keyToUse];
+var groupByKey = function (array, key) {
+    return array.reduce(function (all, item) {
+        var newAll = all;
+        var keyToUse = item[key];
+        var already = newAll[keyToUse];
         if (!already) {
             // create a new parameter in the group-object
             newAll[item[key]] = [item];
@@ -58,21 +81,23 @@ export const groupByKey = (array, key) => {
         return newAll;
     }, {});
 };
+exports.groupByKey = groupByKey;
 /**
  * checks if all items in an array are truthy
  */
-export const isAllTrue = (array) => {
-    const result = array.find((x) => !x);
+var isAllTrue = function (array) {
+    var result = array.find(function (x) { return !x; });
     //  console.log({ result });
     return result === undefined;
 };
+exports.isAllTrue = isAllTrue;
 /**
  * DEPRECATED: should refactor everything to use onlyUnique2 and call it onlyUnique again
  *
  * to be used as a filter. removes duplicates
  */
-export function onlyUnique(value, index, self) {
-    return self.findIndex((v) => v === value) === index;
+function onlyUnique(value, index, self) {
+    return self.findIndex(function (v) { return v === value; }) === index;
 }
 /**
  * function that returns a filter function that can be used as a filter for any array. removes duplicates.
@@ -81,17 +106,23 @@ export function onlyUnique(value, index, self) {
  *
  *
  */
-export const onlyUnique2 = (isEqualFn) => (value, index, self) => {
-    return (self.findIndex((v) => (isEqualFn ? isEqualFn(v, value) : v === value)) ===
-        index);
+var onlyUnique2 = function (isEqualFn) {
+    return function (value, index, self) {
+        return (self.findIndex(function (v) { return (isEqualFn ? isEqualFn(v, value) : v === value); }) ===
+            index);
+    };
 };
+exports.onlyUnique2 = onlyUnique2;
 /**
  * Useful function to find duplicates
  */
-export const onlyDuplicates = (isEqualFn) => (value, index, self) => {
-    return (self.findIndex((v) => (isEqualFn ? isEqualFn(v, value) : v === value)) !==
-        index);
+var onlyDuplicates = function (isEqualFn) {
+    return function (value, index, self) {
+        return (self.findIndex(function (v) { return (isEqualFn ? isEqualFn(v, value) : v === value); }) !==
+            index);
+    };
 };
+exports.onlyDuplicates = onlyDuplicates;
 /**
  * if something is not an array, returns it as the first element of an array
  *
@@ -99,10 +130,14 @@ export const onlyDuplicates = (isEqualFn) => (value, index, self) => {
  *
  * NB: TODO: find out the workings of the array constructor (`Array("any value")`), because maybe it does something very similar. No need to have a dependency then if it's similar.
  */
-export const makeArray = (...arrayOrNotArray) => {
+var makeArray = function () {
+    var arrayOrNotArray = [];
+    for (var _i = 0; _i < arguments.length; _i++) {
+        arrayOrNotArray[_i] = arguments[_i];
+    }
     return arrayOrNotArray
-        .map((arrayOrNot) => {
-        const array = arrayOrNot
+        .map(function (arrayOrNot) {
+        var array = arrayOrNot
             ? Array.isArray(arrayOrNot)
                 ? arrayOrNot
                 : [arrayOrNot]
@@ -111,12 +146,14 @@ export const makeArray = (...arrayOrNotArray) => {
     })
         .flat();
 };
+exports.makeArray = makeArray;
 /**
  * takes any type T or an array of T and returns T or the first of the array (which is T)
  */
-export const takeFirst = (arrayOrNot) => {
-    return makeArray(arrayOrNot)[0];
+var takeFirst = function (arrayOrNot) {
+    return (0, exports.makeArray)(arrayOrNot)[0];
 };
+exports.takeFirst = takeFirst;
 /**
  * useful for cli's that only take strings. This creates an object from a string
  *
@@ -125,45 +162,55 @@ export const takeFirst = (arrayOrNot) => {
  *
  * TODO: would be nice if we can validate this string immediately using a JSON SCHEMA
  */
-export const getObjectFromParamsString = (paramsString) => mergeObjectsArray(paramsString
-    .split(",")
-    .map((x) => x.trim().split(":"))
-    .map((pair) => pair[0] && pair[1] ? { [pair[0].trim()]: pair[1] } : null)
-    .filter(notEmpty));
+var getObjectFromParamsString = function (paramsString) {
+    return (0, mergeObjectsArray_js_1.mergeObjectsArray)(paramsString
+        .split(",")
+        .map(function (x) { return x.trim().split(":"); })
+        .map(function (pair) {
+        var _a;
+        return pair[0] && pair[1] ? (_a = {}, _a[pair[0].trim()] = pair[1], _a) : null;
+    })
+        .filter(notEmpty));
+};
+exports.getObjectFromParamsString = getObjectFromParamsString;
 /** sums all parameters in two objects together */
-export const sumObjectParameters = (object1, object2) => {
-    const objectKeys = Object.keys(object1);
-    const summedObject = mergeObjectsArray(objectKeys.map((key) => {
-        const summedObjectPart = { [key]: object1[key] + object2[key] };
+var sumObjectParameters = function (object1, object2) {
+    var objectKeys = Object.keys(object1);
+    var summedObject = (0, mergeObjectsArray_js_1.mergeObjectsArray)(objectKeys.map(function (key) {
+        var _a;
+        var summedObjectPart = (_a = {}, _a[key] = object1[key] + object2[key], _a);
         return summedObjectPart;
     }));
     // NB: too bad we still need `as TObject` here. I would love to learn how to prevent that
     return summedObject;
 };
+exports.sumObjectParameters = sumObjectParameters;
 /**
  * sums all keys of an array of objects, assuming the objects have the same datastructure and assuming the values contain either numbers or undefined
  */
-export const sumAllKeys = (objectArray, keys) => {
-    const sumObject = objectArray.reduce((total, item) => {
+var sumAllKeys = function (objectArray, keys) {
+    var sumObject = objectArray.reduce(function (total, item) {
         // NB: not needed normally, but there seems to be some corrupt data here and there
         if (!item)
             return total;
-        const newTotal = mergeObjectsArray(keys.map((key) => {
-            const value1 = total ? total[key] || 0 : 0;
-            const value2 = item?.[key] || 0;
-            const sum = (!total || total[key] === undefined) && item[key] === undefined
+        var newTotal = (0, mergeObjectsArray_js_1.mergeObjectsArray)(keys.map(function (key) {
+            var _a;
+            var value1 = total ? total[key] || 0 : 0;
+            var value2 = (item === null || item === void 0 ? void 0 : item[key]) || 0;
+            var sum = (!total || total[key] === undefined) && item[key] === undefined
                 ? undefined
                 : value1 + value2;
-            return { [key]: sum };
+            return _a = {}, _a[key] = sum, _a;
         }));
         return newTotal;
     }, null);
     return sumObject;
 };
+exports.sumAllKeys = sumAllKeys;
 /**
  * Removes empty values (null or undefined) from your arrays in a type-safe way
  */
-export function notEmpty(value) {
+function notEmpty(value) {
     return value !== null && value !== undefined;
 }
 //# sourceMappingURL=general.js.map

@@ -8,7 +8,7 @@ export type MappedObject<T> = {
  */
 export declare const createMappedObject: <T extends {
     [key: string]: any;
-}, U = T>(array: T[], mapKey: keyof T, mapFn?: ((value: T, array: T[]) => U) | undefined) => MappedObject<U>;
+}, U = T>(array: T[], mapKey: keyof T, mapFn?: (value: T, array: T[]) => U) => MappedObject<U>;
 /**
  * Simpler mapped object creator that I need quite often!
  */

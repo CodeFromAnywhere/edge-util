@@ -1,4 +1,18 @@
-import { omitUndefinedValues } from "./omitUndefinedValues.js";
+"use strict";
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.mergeObjects = exports.mergeObjectParameters = void 0;
+var omitUndefinedValues_js_1 = require("./omitUndefinedValues.js");
 /**
  * merges two objects: a config object and a defaults object. If the config object has something missing, a default will be used from the defaults object.
  *
@@ -6,14 +20,15 @@ import { omitUndefinedValues } from "./omitUndefinedValues.js";
  *
  * DEPRECATED: in favor of mergeObjects
  */
-export const mergeObjectParameters = (config, defaults) => {
-    const parameters = Object.keys({
-        ...config,
-        ...defaults,
-    });
-    const mergedConfig = parameters.reduce((getConfig, p) => ({ ...getConfig, [p]: config?.[p] || defaults?.[p] }), {});
+var mergeObjectParameters = function (config, defaults) {
+    var parameters = Object.keys(__assign(__assign({}, config), defaults));
+    var mergedConfig = parameters.reduce(function (getConfig, p) {
+        var _a;
+        return (__assign(__assign({}, getConfig), (_a = {}, _a[p] = (config === null || config === void 0 ? void 0 : config[p]) || (defaults === null || defaults === void 0 ? void 0 : defaults[p]), _a)));
+    }, {});
     return mergedConfig;
 };
+exports.mergeObjectParameters = mergeObjectParameters;
 /**
  * merges multiple objects, overwriting the previous one with the next. Can be useful for configs where there are multiple layers of configs that overwrite each other.
  *
@@ -23,20 +38,25 @@ export const mergeObjectParameters = (config, defaults) => {
  *
  * Please note that if a latter object has a key which holds "undefined", it will NOT overwrite it. Anything else WILL
  */
-export const mergeObjects = (...objects) => {
+var mergeObjects = function () {
+    var objects = [];
+    for (var _i = 0; _i < arguments.length; _i++) {
+        objects[_i] = arguments[_i];
+    }
     if (objects.length === 0)
         return;
-    const firstObject = objects[0];
-    const mergedObject = objects.reduce((previous, current) => {
+    var firstObject = objects[0];
+    var mergedObject = objects.reduce(function (previous, current) {
         if (!current)
             return previous;
-        const currentWithoutUndefined = omitUndefinedValues(current);
-        const newObject = !previous
+        var currentWithoutUndefined = (0, omitUndefinedValues_js_1.omitUndefinedValues)(current);
+        var newObject = !previous
             ? current
-            : { ...previous, ...currentWithoutUndefined };
+            : __assign(__assign({}, previous), currentWithoutUndefined);
         return newObject;
         // NB: we cannot guarantee this based on the input!
     }, firstObject);
     return mergedObject;
 };
+exports.mergeObjects = mergeObjects;
 //# sourceMappingURL=object-merge.js.map

@@ -1,5 +1,8 @@
-import { possibleSubExtensions } from "../filename-conventions/index.js";
-import { withoutExtension } from "./js.js";
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.withoutSubExtensions = void 0;
+var index_js_1 = require("../filename-conventions/index.js");
+var js_js_1 = require("./js.js");
 /**
  * NB: filename must have extension!
  *
@@ -7,22 +10,22 @@ import { withoutExtension } from "./js.js";
  *
  * if `allowAllSubextensions` is true, only returns everything before the first dot (.)
  */
-export const withoutSubExtensions = (
+var withoutSubExtensions = function (
 /**
  * filename including extension
  */
-fileName, config) => {
-    const allowAllSubextensions = config?.allowAllSubextensions;
-    const pieces = withoutExtension(fileName).split(".");
+fileName, config) {
+    var allowAllSubextensions = config === null || config === void 0 ? void 0 : config.allowAllSubextensions;
+    var pieces = (0, js_js_1.withoutExtension)(fileName).split(".");
     if (allowAllSubextensions) {
         return pieces[0];
     }
     // only conventioned
-    let isNotAllowedSubExtension = false;
-    const reversePiecesAllowed = pieces
+    var isNotAllowedSubExtension = false;
+    var reversePiecesAllowed = pieces
         .reverse()
-        .reduce((previous, current, currentIndex) => {
-        if (!possibleSubExtensions.includes(current)) {
+        .reduce(function (previous, current, currentIndex) {
+        if (!index_js_1.possibleSubExtensions.includes(current)) {
             isNotAllowedSubExtension = true;
         }
         if (isNotAllowedSubExtension) {
@@ -30,8 +33,9 @@ fileName, config) => {
         }
         return previous;
     }, []);
-    const newName = reversePiecesAllowed.reverse().join(".");
+    var newName = reversePiecesAllowed.reverse().join(".");
     //  .concat(`.${getExtension(fileName)}`);
     return newName;
 };
+exports.withoutSubExtensions = withoutSubExtensions;
 //# sourceMappingURL=withoutSubExtensions.js.map

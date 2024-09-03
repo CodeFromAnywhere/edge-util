@@ -1,10 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.hasAllLetters = void 0;
 /**
  * all letters of b can be found in a, in order (but other letters in between are allowed)
  */
-export const hasAllLetters = (a, b) => {
-    const lettersLeft = a
+var hasAllLetters = function (a, b) {
+    var lettersLeft = a
         .split("")
-        .reduce((lettersLeft, lowercaseValueLetter) => {
+        .reduce(function (lettersLeft, lowercaseValueLetter) {
         if (lettersLeft[0] === lowercaseValueLetter) {
             lettersLeft.shift();
         }
@@ -12,4 +15,5 @@ export const hasAllLetters = (a, b) => {
     }, b.split(""));
     return lettersLeft.length === 0;
 };
+exports.hasAllLetters = hasAllLetters;
 //# sourceMappingURL=hasAllLetters.js.map

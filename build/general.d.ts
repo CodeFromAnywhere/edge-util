@@ -14,7 +14,7 @@ export declare const apply: <T extends unknown>(functions: ((input: T) => T)[], 
  * const enummm = createEnum(taskNames);
  * (value of enummm: { a: "a", b: "b", c: "c" })
  */
-export declare const createEnum: <T extends readonly string[]>(array: T) => { [K in T[number]]: K; };
+export declare const createEnum: <T extends readonly string[]>(array: T) => { [K in (typeof array)[number]]: K; };
 /**
  * key should be of type string!
  *
@@ -44,11 +44,11 @@ export declare function onlyUnique<T extends unknown>(value: T, index: number, s
  *
  *
  */
-export declare const onlyUnique2: <U extends unknown>(isEqualFn?: ((a: U, b: U) => boolean) | undefined) => <T extends U>(value: T, index: number, self: T[]) => boolean;
+export declare const onlyUnique2: <U extends unknown>(isEqualFn?: (a: U, b: U) => boolean) => <T extends U>(value: T, index: number, self: T[]) => boolean;
 /**
  * Useful function to find duplicates
  */
-export declare const onlyDuplicates: <U extends unknown>(isEqualFn?: ((a: U, b: U) => boolean) | undefined) => <T extends U>(value: T, index: number, self: T[]) => boolean;
+export declare const onlyDuplicates: <U extends unknown>(isEqualFn?: (a: U, b: U) => boolean) => <T extends U>(value: T, index: number, self: T[]) => boolean;
 /**
  * if something is not an array, returns it as the first element of an array
  *

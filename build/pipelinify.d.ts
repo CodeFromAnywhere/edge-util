@@ -22,7 +22,7 @@
  */
 export declare const pipelinify: <T extends unknown>(input: any, functions: ((...parameters: any[]) => any)[], context?: {
     [key: string]: any;
-} | undefined, config?: {
+}, config?: {
     showErrors?: boolean;
 }) => Promise<{
     output: T[];

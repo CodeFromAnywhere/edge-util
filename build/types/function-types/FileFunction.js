@@ -1,3 +1,4 @@
+"use strict";
 /**
 `MiracleFunction` for files where the instance is the `projectRelativeFilePath`.
 
@@ -18,7 +19,7 @@ export const moveFile: FileFunction<string> = (
 };
 ```
 */
-export {};
+Object.defineProperty(exports, "__esModule", { value: true });
 // export type FileFunction<
 //   TContext = undefined,
 //   TResponse = StandardResponse

@@ -1,1 +1,1 @@
-{"version":3,"file":"mergeObjectsArray.d.ts","sourceRoot":"","sources":["../src/mergeObjectsArray.ts"],"names":[],"mappings":"AAAA;;GAEG;AAEH,eAAO,MAAM,iBAAiB;;0BAQ7B,CAAC"}
+{"version":3,"file":"mergeObjectsArray.d.ts","sourceRoot":"","sources":["../src/mergeObjectsArray.ts"],"names":[],"mappings":"AAAA;;GAEG;AAEH,eAAO,MAAM,iBAAiB,GAAI,CAAC,SAAS;IAAE,CAAC,GAAG,EAAE,MAAM,GAAG,GAAG,CAAA;CAAE,gBAClD,CAAC,EAAE,KAChB,CAMF,CAAC"}

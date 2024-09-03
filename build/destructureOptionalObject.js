@@ -1,3 +1,6 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.destructureOptionalObject = void 0;
 /**
 Easy way to destructure your object (or array) even if it may be `undefined` or `null`.
 
@@ -24,9 +27,10 @@ const doSomethingBetter = (config?: { a: string; b: boolean; c: number }) => {
 <!-- It would be great if I could also make examples that not only refer to input/output combos but maybe another function that showcases it's usage... -->
 
  */
-export const destructureOptionalObject = (object) => {
+var destructureOptionalObject = function (object) {
     if (!object)
         return {};
     return object;
 };
+exports.destructureOptionalObject = destructureOptionalObject;
 //# sourceMappingURL=destructureOptionalObject.js.map

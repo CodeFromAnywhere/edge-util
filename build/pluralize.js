@@ -1,3 +1,4 @@
+"use strict";
 /**
  * KISS; fuck grammar
  *
@@ -5,21 +6,27 @@
  *
  * To pluralize any word we simply attach an "s" at the end
  */
-export const pluralize = (parameterName) => {
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.isSingular = exports.isPlural = exports.singularize = exports.pluralize = void 0;
+var pluralize = function (parameterName) {
     return parameterName.concat("s");
 };
+exports.pluralize = pluralize;
 /**
  * Removes the 's' if it is found at the end of the parameter name
  */
-export const singularize = (parameterName) => {
+var singularize = function (parameterName) {
     return parameterName.endsWith("s")
         ? parameterName.substring(0, parameterName.length - 1)
         : parameterName;
 };
-export const isPlural = (parameterName) => {
+exports.singularize = singularize;
+var isPlural = function (parameterName) {
     return parameterName.endsWith("s");
 };
-export const isSingular = (parameterName) => {
-    return !isPlural(parameterName);
+exports.isPlural = isPlural;
+var isSingular = function (parameterName) {
+    return !(0, exports.isPlural)(parameterName);
 };
+exports.isSingular = isSingular;
 //# sourceMappingURL=pluralize.js.map

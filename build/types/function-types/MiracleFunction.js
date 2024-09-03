@@ -1,4 +1,5 @@
-export {};
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 /**
 
 Think about other function types I should make, in order to build a good MRKL interface for my AI Agent. Probably, it would be good to know which functions are user/ai facing, and which are more designed for internal use (helper functions and such). This will already drastically reduce the amount of functions.

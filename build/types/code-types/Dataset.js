@@ -1,7 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.datasetConfigKeys = exports.modelViews = exports.datasetConfig = exports.datasetFilterOperatorConst = void 0;
 /**
  * NB: keys are made `humanCase` and used in UI, so keep a readable name
  */
-export const datasetFilterOperatorConst = [
+exports.datasetFilterOperatorConst = [
     "includesLetters",
     "includes",
     "startsWith",
@@ -13,12 +16,12 @@ export const datasetFilterOperatorConst = [
     "lessThan",
     "lessThanOrEqual",
 ];
-export const datasetConfig = {
-    storageLocation: `memory/datasets.json`,
+exports.datasetConfig = {
+    storageLocation: "memory/datasets.json",
     modelName: "Dataset",
     authorizations: { cfa: "crud" },
 };
-export const modelViews = [
+exports.modelViews = [
     {
         view: "table",
         emoji: "🍴",
@@ -30,7 +33,7 @@ export const modelViews = [
     },
     { view: "tree", emoji: "🌳" },
 ];
-export const datasetConfigKeys = [
+exports.datasetConfigKeys = [
     "filter",
     "sort",
     "maxRows",

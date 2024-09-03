@@ -1,1 +1,1 @@
-{"version":3,"file":"index.js","sourceRoot":"","sources":["../../src/fs-util-js/index.ts"],"names":[],"mappings":"AAAA,cAAc,WAAW,CAAC;AAC1B,cAAc,2BAA2B,CAAC;AAC1C,cAAc,mBAAmB,CAAC;AAClC,cAAc,sBAAsB,CAAC;AACrC,cAAc,SAAS,CAAC;AACxB,cAAc,2BAA2B,CAAC"}
+{"version":3,"file":"index.js","sourceRoot":"","sources":["../../src/fs-util-js/index.ts"],"names":[],"mappings":";;;;;;;;;;;;;;;;AAAA,4CAA0B;AAC1B,4DAA0C;AAC1C,oDAAkC;AAClC,uDAAqC;AACrC,0CAAwB;AACxB,4DAA0C"}

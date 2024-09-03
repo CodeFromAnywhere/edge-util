@@ -16,6 +16,6 @@ export declare const mergeObjectParameters: <T>(config: T | undefined, defaults:
  * Please note that if a latter object has a key which holds "undefined", it will NOT overwrite it. Anything else WILL
  */
 export declare const mergeObjects: <T extends {
-    [key: string]: any;
+    [key: string]: any | undefined;
 }>(...objects: (Partial<T> | undefined)[]) => T | undefined;
 //# sourceMappingURL=object-merge.d.ts.map

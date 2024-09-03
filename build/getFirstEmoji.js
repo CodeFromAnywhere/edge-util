@@ -1,7 +1,12 @@
-import emojiRegex from "emoji-regex";
-export const getFirstEmoji = (text) => {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.getFirstEmoji = void 0;
+var emoji_regex_1 = require("emoji-regex");
+var getFirstEmoji = function (text) {
+    var _a;
     if (!text)
         return;
-    return text?.match(emojiRegex())?.[0];
+    return (_a = text === null || text === void 0 ? void 0 : text.match((0, emoji_regex_1.default)())) === null || _a === void 0 ? void 0 : _a[0];
 };
+exports.getFirstEmoji = getFirstEmoji;
 //# sourceMappingURL=getFirstEmoji.js.map

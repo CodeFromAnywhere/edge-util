@@ -1,8 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.hashCode = void 0;
 /** from https://stackoverflow.com/questions/7616461/generate-a-hash-from-string-in-javascript
  *
  * returns a no-collision deterministic number for a string. can be useful for indexes in the frontend, for example
  */
-export const hashCode = (string) => {
+var hashCode = function (string) {
     if (!string) {
         return -1;
     }
@@ -17,4 +20,5 @@ export const hashCode = (string) => {
     // this ensures it's always positive
     return hash >>> 0;
 };
+exports.hashCode = hashCode;
 //# sourceMappingURL=hashCode.js.map

@@ -3,8 +3,8 @@
  *
  * If it's too slow, the function will still be executed. You can optionally provide a callback to be executed after the function.
  */
-export declare const runFunctionWithTimeout: <TPromisedFnReturnType, TFn extends () => any = () => any>(fn: TFn, timeoutMs: number, onFinish?: ((result: TPromisedFnReturnType, isTimedOut: boolean) => void) | undefined) => Promise<{
+export declare const runFunctionWithTimeout: <TPromisedFnReturnType, TFn extends () => any = () => any>(fn: TFn, timeoutMs: number, onFinish?: (result: TPromisedFnReturnType, isTimedOut: boolean) => void) => Promise<{
     isTimedOut: boolean;
-    result?: TPromisedFnReturnType | undefined;
+    result?: TPromisedFnReturnType;
 }>;
 //# sourceMappingURL=runFunctionWithTimeout.d.ts.map

@@ -1,5 +1,19 @@
-import { getObjectKeysArray } from "./getObjectKeysArray.js";
-import { mergeObjectsArray } from "./mergeObjectsArray.js";
+"use strict";
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.setNestedObject = exports.mergeNestedObject = void 0;
+var getObjectKeysArray_js_1 = require("./getObjectKeysArray.js");
+var mergeObjectsArray_js_1 = require("./mergeObjectsArray.js");
 // type X = IsOptional<string|undefined>;
 /**
 
@@ -38,7 +52,7 @@ Example:
   It's great, because you can't make any type mistakes, and your code becomes much shorter for altering an object
 
  */
-export const mergeNestedObject = (object, otherObject) => {
+var mergeNestedObject = function (object, otherObject) {
     if (object === undefined && otherObject !== undefined) {
         // basecase that is used if the original object has some optional value undefined. in that case, the otherObject is used to set that key
         return otherObject;
@@ -47,24 +61,26 @@ export const mergeNestedObject = (object, otherObject) => {
         return object;
     // put `otherObject` on object, make sure
     // const withoutUndefinedOtherObject = omitUndefinedValues(otherObject);
-    const partialNewObject = mergeObjectsArray(
+    var partialNewObject = (0, mergeObjectsArray_js_1.mergeObjectsArray)(
     // go over all keys in otherObject...
-    getObjectKeysArray(otherObject).map((key) => {
+    (0, getObjectKeysArray_js_1.getObjectKeysArray)(otherObject).map(function (key) {
+        var _a, _b;
         // get the value for it
-        const otherObjectValue = otherObject[key];
+        var otherObjectValue = otherObject[key];
         //   if it's defined, but not an object.. the value is definite.
         // NB: arrays are also objects, but in this case they should also return
         if (typeof otherObjectValue !== "object" ||
             Array.isArray(otherObjectValue)) {
-            return { [key]: otherObject[key] };
+            return _a = {}, _a[key] = otherObject[key], _a;
         }
         //   if it's defined and its type is an object, that object needs to be merged with the full object
-        const newValue = mergeNestedObject(object[key], otherObject[key]);
-        return { [key]: newValue };
+        var newValue = (0, exports.mergeNestedObject)(object[key], otherObject[key]);
+        return _b = {}, _b[key] = newValue, _b;
     }));
     //   ensure to merge the result with the original object to also do the first level
-    return { ...object, ...partialNewObject };
+    return __assign(__assign({}, object), partialNewObject);
 };
+exports.mergeNestedObject = mergeNestedObject;
 /**
    * Set a value inside a nested object more easily. Same as `mergeNestedObject` but works for setting a value intead of merging it
 
@@ -113,7 +129,7 @@ const newSchema = setNestedObject(
 console.log({ newSchema });
 ```
    */
-export const setNestedObject = (object, otherObject, value) => {
+var setNestedObject = function (object, otherObject, value) {
     if (object === undefined && otherObject !== undefined) {
         // basecase that is used if the original object has some optional value undefined. in that case, the otherObject is used to set that key
         return otherObject;
@@ -122,21 +138,23 @@ export const setNestedObject = (object, otherObject, value) => {
         return object;
     // put `otherObject` on object, make sure
     // const withoutUndefinedOtherObject = omitUndefinedValues(otherObject);
-    const partialNewObject = mergeObjectsArray(
+    var partialNewObject = (0, mergeObjectsArray_js_1.mergeObjectsArray)(
     // go over all keys in otherObject...
-    getObjectKeysArray(otherObject).map((key) => {
+    (0, getObjectKeysArray_js_1.getObjectKeysArray)(otherObject).map(function (key) {
+        var _a, _b;
         // get the value for it
-        const otherObjectValue = otherObject[key];
+        var otherObjectValue = otherObject[key];
         // if it's defined, but not an object.. the value is definite.
         // NB: arrays are also objects, but in this case they should also return
         if (otherObjectValue === null) {
-            return { [key]: value };
+            return _a = {}, _a[key] = value, _a;
         }
         //   if it's defined and its type is an object, that object needs to be merged with the full object
-        const newValue = setNestedObject(object[key], otherObject[key], value);
-        return { [key]: newValue };
+        var newValue = (0, exports.setNestedObject)(object[key], otherObject[key], value);
+        return _b = {}, _b[key] = newValue, _b;
     }));
     //   ensure to merge the result with the original object to also do the first level
-    return { ...object, ...partialNewObject };
+    return __assign(__assign({}, object), partialNewObject);
 };
+exports.setNestedObject = setNestedObject;
 //# sourceMappingURL=mergeNestedObject.js.map

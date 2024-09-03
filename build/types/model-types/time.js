@@ -1,4 +1,8 @@
-export const generateTime = () => Date.now();
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.generateTime = void 0;
+var generateTime = function () { return Date.now(); };
+exports.generateTime = generateTime;
 /**
 NB: tried to do it with typescript, dynamically, but doesn't work
 

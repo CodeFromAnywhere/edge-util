@@ -1,1 +1,1 @@
-{"version":3,"file":"getSubsetFromObject.d.ts","sourceRoot":"","sources":["../src/getSubsetFromObject.ts"],"names":[],"mappings":"AAAA;;;;;;GAMG;AACH,eAAO,MAAM,mBAAmB,+EAU/B,CAAC"}
+{"version":3,"file":"getSubsetFromObject.d.ts","sourceRoot":"","sources":["../src/getSubsetFromObject.ts"],"names":[],"mappings":"AAAA;;;;;;GAMG;AACH,eAAO,MAAM,mBAAmB,GAAI,CAAC,EAAE,CAAC,SAAS,SAAS,CAAC,MAAM,CAAC,CAAC,EAAE,UAC3D,CAAC,QACH,CAAC,uBAQR,CAAC"}

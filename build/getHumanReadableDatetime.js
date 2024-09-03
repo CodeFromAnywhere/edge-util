@@ -1,27 +1,30 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.getHumanReadableDatetime = void 0;
 /**
  * gets a datetime for a ux with little room, a la whatsapp messages.
  */
-export const getHumanReadableDatetime = (unixTime) => {
+var getHumanReadableDatetime = function (unixTime) {
     if (unixTime === 0) {
         return "";
     }
-    const dateObject = new Date(unixTime);
-    const nowDate = new Date(Date.now());
-    const yesterdayDate = new Date(Date.now() - 86400000);
-    const msAgo = Date.now() - unixTime;
-    const isToday = msAgo < 86400000 && nowDate.getDate() === dateObject.getDate();
-    const isYesterday = msAgo < 86400000 * 2 && yesterdayDate.getDate() === dateObject.getDate();
-    const isThisWeek = msAgo < 86400000 * 7;
+    var dateObject = new Date(unixTime);
+    var nowDate = new Date(Date.now());
+    var yesterdayDate = new Date(Date.now() - 86400000);
+    var msAgo = Date.now() - unixTime;
+    var isToday = msAgo < 86400000 && nowDate.getDate() === dateObject.getDate();
+    var isYesterday = msAgo < 86400000 * 2 && yesterdayDate.getDate() === dateObject.getDate();
+    var isThisWeek = msAgo < 86400000 * 7;
     if (isToday) {
         // NB: if it's today, just show the time
-        const hours = dateObject.getHours();
-        const hoursString = hours < 10 ? `0${hours}` : hours;
-        const minutes = dateObject.getMinutes();
-        const minutesString = minutes < 10 ? `0${minutes}` : minutes;
-        return `${hoursString}:${minutesString}`;
+        var hours = dateObject.getHours();
+        var hoursString = hours < 10 ? "0".concat(hours) : hours;
+        var minutes = dateObject.getMinutes();
+        var minutesString = minutes < 10 ? "0".concat(minutes) : minutes;
+        return "".concat(hoursString, ":").concat(minutesString);
     }
     if (isYesterday) {
-        return `Yesterday`;
+        return "Yesterday";
     }
     if (isThisWeek) {
         return [
@@ -34,10 +37,11 @@ export const getHumanReadableDatetime = (unixTime) => {
             "Sunday",
         ][dateObject.getDay()];
     }
-    const month = dateObject.getMonth() + 1;
-    const monthString = month < 10 ? `0${month}` : month;
-    const date = dateObject.getDate();
-    const dateString = date < 10 ? `0${date}` : date;
-    return `${dateString}/${monthString}/${dateObject.getFullYear()}`;
+    var month = dateObject.getMonth() + 1;
+    var monthString = month < 10 ? "0".concat(month) : month;
+    var date = dateObject.getDate();
+    var dateString = date < 10 ? "0".concat(date) : date;
+    return "".concat(dateString, "/").concat(monthString, "/").concat(dateObject.getFullYear());
 };
+exports.getHumanReadableDatetime = getHumanReadableDatetime;
 //# sourceMappingURL=getHumanReadableDatetime.js.map

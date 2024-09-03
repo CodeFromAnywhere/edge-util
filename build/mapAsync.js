@@ -1,3 +1,6 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.mapAsync = void 0;
 /**
  * mapAsync makes it possible to map over an array async without having to do the promise.all afterwards
  *
@@ -18,8 +21,9 @@
   .then((times) => mapAsync(times, halfAsync));
 ```
  */
-export const mapAsync = (array, callback) => {
-    const u = Promise.all(array.map(callback));
+var mapAsync = function (array, callback) {
+    var u = Promise.all(array.map(callback));
     return u;
 };
+exports.mapAsync = mapAsync;
 //# sourceMappingURL=mapAsync.js.map
