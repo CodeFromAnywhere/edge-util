@@ -1,48 +1,35 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.getExtension = exports.withoutExtension = exports.removeTrailingSlash = exports.isPathRelative = exports.getFileOrFolderName = exports.getFolderJs = void 0;
-var getFolderJs = function (filePath) {
+export const getFolderJs = (filePath) => {
     if (filePath === undefined)
         return undefined;
-    var chunks = filePath.split("/");
+    const chunks = filePath.split("/");
     chunks.pop();
-    var allWithoutFile = chunks.join("/");
+    const allWithoutFile = chunks.join("/");
     return allWithoutFile;
 };
-exports.getFolderJs = getFolderJs;
-var getFileOrFolderName = function (fileOrFolderPath) {
+export const getFileOrFolderName = (fileOrFolderPath) => {
     if (!fileOrFolderPath)
         return undefined;
-    var last = fileOrFolderPath.split("/").pop();
+    const last = fileOrFolderPath.split("/").pop();
     return last;
 };
-exports.getFileOrFolderName = getFileOrFolderName;
-var isPathRelative = function (path) {
-    return path.startsWith("./") || path.startsWith("../");
-};
-exports.isPathRelative = isPathRelative;
-var removeTrailingSlash = function (p) {
-    return p.charAt(0) === "/" ? p.slice(1) : p;
-};
-exports.removeTrailingSlash = removeTrailingSlash;
+export const isPathRelative = (path) => path.startsWith("./") || path.startsWith("../");
+export const removeTrailingSlash = (p) => p.charAt(0) === "/" ? p.slice(1) : p;
 /**
  * removes extension from the filename
  *
  */
-var withoutExtension = function (fileName) {
-    var pieces = fileName.split(".");
+export const withoutExtension = (fileName) => {
+    const pieces = fileName.split(".");
     pieces.pop();
     return pieces.join(".");
 };
-exports.withoutExtension = withoutExtension;
 /**
  * returns the extension of the filename or path WITHOUT dot
  *
  * NB: not sure, but could be nice to replace this with path.extname(pathString)
  */
-var getExtension = function (fileNameOrPath) {
-    var pieces = fileNameOrPath.split(".");
+export const getExtension = (fileNameOrPath) => {
+    const pieces = fileNameOrPath.split(".");
     return pieces.pop();
 };
-exports.getExtension = getExtension;
 //# sourceMappingURL=js.js.map

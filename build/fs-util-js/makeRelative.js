@@ -1,4 +1,3 @@
-"use strict";
 /**
  * Makes a path relative using proper parsing
  *
@@ -8,9 +7,7 @@
  *
  * NB: also works with relative paths
  */
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.makeRelative = void 0;
-var makeRelative = function (
+export const makeRelative = (
 /**
  * absolute path of a file or folder without a slash at the end
  */
@@ -18,7 +15,7 @@ absolutePath,
 /**
  * folder path without a slash at the end
  */
-baseFolderPath) {
+baseFolderPath) => {
     if (baseFolderPath.length === 0)
         return absolutePath;
     // basecase should be handled, we don't want to get some weird slice edgecase
@@ -26,5 +23,4 @@ baseFolderPath) {
         return "";
     return absolutePath.slice(baseFolderPath.length + 1);
 };
-exports.makeRelative = makeRelative;
 //# sourceMappingURL=makeRelative.js.map

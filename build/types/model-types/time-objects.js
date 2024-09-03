@@ -1,30 +1,24 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.getCreatedTimeObject = exports.getUpdatedTimeObject = exports.getTimeObject = void 0;
-var getTimeObject = function () {
-    var unixTime = Date.now();
-    var dateObject = new Date(unixTime);
-    var date = "".concat(dateObject.getFullYear(), "-").concat(dateObject.getMonth() + 1, "-").concat(dateObject.getDate());
-    var time = "".concat(dateObject.getHours(), ":").concat(dateObject.getMinutes());
-    return { unixTime: unixTime, date: date, time: time };
+export const getTimeObject = () => {
+    const unixTime = Date.now();
+    const dateObject = new Date(unixTime);
+    const date = `${dateObject.getFullYear()}-${dateObject.getMonth() + 1}-${dateObject.getDate()}`;
+    const time = `${dateObject.getHours()}:${dateObject.getMinutes()}`;
+    return { unixTime, date, time };
 };
-exports.getTimeObject = getTimeObject;
-var getUpdatedTimeObject = function () {
-    var _a = (0, exports.getTimeObject)(), unixTime = _a.unixTime, date = _a.date, time = _a.time;
+export const getUpdatedTimeObject = () => {
+    const { unixTime, date, time } = getTimeObject();
     return {
         updatedAt: unixTime,
         updatedDate: date,
         updatedTime: time,
     };
 };
-exports.getUpdatedTimeObject = getUpdatedTimeObject;
-var getCreatedTimeObject = function () {
-    var _a = (0, exports.getTimeObject)(), unixTime = _a.unixTime, date = _a.date, time = _a.time;
+export const getCreatedTimeObject = () => {
+    const { unixTime, date, time } = getTimeObject();
     return {
         createdAt: unixTime,
         createdDate: date,
         createdTime: time,
     };
 };
-exports.getCreatedTimeObject = getCreatedTimeObject;
 //# sourceMappingURL=time-objects.js.map

@@ -1,19 +1,5 @@
-"use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.markdownParseToMarkdownModelType = exports.parseMarkdownModelTimestamp = exports.tryParseDate = void 0;
-var convert_case_js_1 = require("../../convert-case.js");
-var generateRandomString_js_1 = require("../../generateRandomString.js");
+import { kebabCase } from "../../convert-case.js";
+import { generateId } from "../../generateRandomString.js";
 /**
  * Tries to parse a date from a string
  * - implements default behavior of `new Date` with a try catch
@@ -21,13 +7,12 @@ var generateRandomString_js_1 = require("../../generateRandomString.js");
  *
  * TODO: put in a better location... date-util?
  */
-var tryParseDate = function (dateString) {
+export const tryParseDate = (dateString) => {
     try {
         return new Date(dateString).valueOf();
     }
-    catch (_a) { }
+    catch { }
 };
-exports.tryParseDate = tryParseDate;
 /**
  * First tries to look at the frontmatter value, this is leading because it is what the user sees and the file system of the os could be inconsistent
  *
@@ -35,42 +20,51 @@ exports.tryParseDate = tryParseDate;
  *
  * If that doesn't succeed, sometimes we'll set it to  the current timestamp
  */
-var parseMarkdownModelTimestamp = function (parameters, markdownParse, parameterName) {
-    var parameterValue = parameters[parameterName];
-    var markdownParseValue = markdownParse[parameterName];
-    var parsedParameterValue = typeof parameterValue === "number" && !isNaN(parameterValue)
+export const parseMarkdownModelTimestamp = (parameters, markdownParse, parameterName) => {
+    const parameterValue = parameters[parameterName];
+    const markdownParseValue = markdownParse[parameterName];
+    const parsedParameterValue = typeof parameterValue === "number" && !isNaN(parameterValue)
         ? parameterValue
         : typeof parameterValue === "string"
-            ? (0, exports.tryParseDate)(parameterValue)
+            ? tryParseDate(parameterValue)
             : undefined;
-    var generatedValue = parameterName === "deletedAt" || parameterName === "openedAt"
+    const generatedValue = parameterName === "deletedAt" || parameterName === "openedAt"
         ? 0
         : Date.now();
-    var parsedTimestamp = parsedParameterValue !== undefined
+    const parsedTimestamp = parsedParameterValue !== undefined
         ? parsedParameterValue
         : markdownParseValue !== undefined
             ? markdownParseValue
             : generatedValue;
     return parsedTimestamp;
 };
-exports.parseMarkdownModelTimestamp = parseMarkdownModelTimestamp;
 /**
  * makes a markdownModelType from a markdownParse.
  */
-var markdownParseToMarkdownModelType = function (markdownParse) {
+export const markdownParseToMarkdownModelType = (markdownParse) => {
     if (!markdownParse)
         return null;
-    var parameters = markdownParse.parameters, raw = markdownParse.raw, fileName = markdownParse.fileName;
-    var name = parameters.name ? String(parameters.name) : fileName;
-    var slug = (0, convert_case_js_1.kebabCase)(name);
-    var id = parameters.id ? String(parameters.id) : (0, generateRandomString_js_1.generateId)();
-    var createdAt = (0, exports.parseMarkdownModelTimestamp)(parameters, markdownParse, "createdAt");
-    var createdFirstAt = (0, exports.parseMarkdownModelTimestamp)(parameters, markdownParse, "createdFirstAt");
-    var updatedAt = (0, exports.parseMarkdownModelTimestamp)(parameters, markdownParse, "updatedAt");
-    var deletedAt = (0, exports.parseMarkdownModelTimestamp)(parameters, markdownParse, "deletedAt");
-    var openedAt = (0, exports.parseMarkdownModelTimestamp)(parameters, markdownParse, "openedAt");
-    var markdownModelType = __assign(__assign({}, parameters), { id: id, createdAt: createdAt, createdFirstAt: createdFirstAt, deletedAt: deletedAt, updatedAt: updatedAt, openedAt: openedAt, markdown: raw, name: name, slug: slug });
+    const { parameters, raw, fileName } = markdownParse;
+    const name = parameters.name ? String(parameters.name) : fileName;
+    const slug = kebabCase(name);
+    const id = parameters.id ? String(parameters.id) : generateId();
+    const createdAt = parseMarkdownModelTimestamp(parameters, markdownParse, "createdAt");
+    const createdFirstAt = parseMarkdownModelTimestamp(parameters, markdownParse, "createdFirstAt");
+    const updatedAt = parseMarkdownModelTimestamp(parameters, markdownParse, "updatedAt");
+    const deletedAt = parseMarkdownModelTimestamp(parameters, markdownParse, "deletedAt");
+    const openedAt = parseMarkdownModelTimestamp(parameters, markdownParse, "openedAt");
+    const markdownModelType = {
+        ...parameters,
+        id,
+        createdAt,
+        createdFirstAt,
+        deletedAt,
+        updatedAt,
+        openedAt,
+        markdown: raw,
+        name,
+        slug,
+    };
     return markdownModelType;
 };
-exports.markdownParseToMarkdownModelType = markdownParseToMarkdownModelType;
 //# sourceMappingURL=markdownParseToMarkdownModelType.js.map

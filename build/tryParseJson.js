@@ -1,13 +1,10 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.tryParseJson = void 0;
-var removeCommentsRegex = /\\"|"(?:\\"|[^"])*"|(\/\/.*|\/\*[\s\S]*?\*\/)/g;
+const removeCommentsRegex = /\\"|"(?:\\"|[^"])*"|(\/\/.*|\/\*[\s\S]*?\*\/)/g;
 /**
  * if text isn't json, returns null
  */
-var tryParseJson = function (text, logParseError) {
+export const tryParseJson = (text, logParseError) => {
     try {
-        var jsonStringWithoutComments = text.replace(removeCommentsRegex, function (m, g) { return (g ? "" : m); });
+        const jsonStringWithoutComments = text.replace(removeCommentsRegex, (m, g) => (g ? "" : m));
         return JSON.parse(jsonStringWithoutComments);
     }
     catch (parseError) {
@@ -16,5 +13,4 @@ var tryParseJson = function (text, logParseError) {
         return null;
     }
 };
-exports.tryParseJson = tryParseJson;
 //# sourceMappingURL=tryParseJson.js.map

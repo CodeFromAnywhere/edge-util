@@ -1,10 +1,6 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.flattenObjectMaps = void 0;
-var flattenObjectMaps = function (monster, locatons) {
+export const flattenObjectMaps = (monster, locatons) => {
     //
 };
-exports.flattenObjectMaps = flattenObjectMaps;
 // how can I implement the above?
 // can I even extract the locations from the schema?
 // The first one is easy

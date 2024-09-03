@@ -1,14 +1,11 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.test = void 0;
-var convert_case_js_1 = require("./convert-case.js");
-var convert_case_js_2 = require("./convert-case.js");
-var convert_case_js_3 = require("./convert-case.js");
-var convert_case_js_4 = require("./convert-case.js");
-var convert_case_js_5 = require("./convert-case.js");
-var convert_case_js_6 = require("./convert-case.js");
-var test = function () {
-    var testCases = [
+import { camelCase } from "./convert-case.js";
+import { capitalCase } from "./convert-case.js";
+import { humanCase } from "./convert-case.js";
+import { kebabCase } from "./convert-case.js";
+import { pascalCase } from "./convert-case.js";
+import { snakeCase } from "./convert-case.js";
+export const test = () => {
+    const testCases = [
         "Handige harry",
         "handigeHarry",
         "HandigeHarry",
@@ -16,21 +13,20 @@ var test = function () {
         "handige_harry",
         "HANDIGE_HARRY",
     ];
-    var results = testCases.map(function (word) {
+    const results = testCases.map((word) => {
         return {
-            word: word,
-            camel: (0, convert_case_js_1.camelCase)(word),
-            snake: (0, convert_case_js_6.snakeCase)(word),
-            kebab: (0, convert_case_js_4.kebabCase)(word),
-            pascal: (0, convert_case_js_5.pascalCase)(word),
-            capital: (0, convert_case_js_2.capitalCase)(word),
-            human: (0, convert_case_js_3.humanCase)(word),
+            word,
+            camel: camelCase(word),
+            snake: snakeCase(word),
+            kebab: kebabCase(word),
+            pascal: pascalCase(word),
+            capital: capitalCase(word),
+            human: humanCase(word),
         };
     });
     return results;
 };
-exports.test = test;
-var expectedResult = JSON.stringify([
+const expectedResult = JSON.stringify([
     {
         word: "Handige harry",
         camel: "handigeHarry",

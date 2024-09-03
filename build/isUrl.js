@@ -1,14 +1,10 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.isUrl = void 0;
-var isUrl = function (urlOrPath) {
+export const isUrl = (urlOrPath) => {
     if (urlOrPath.startsWith("http://") || urlOrPath.startsWith("https://")) {
         return true;
     }
     return false;
 };
-exports.isUrl = isUrl;
-exports.isUrl.config = {
+isUrl.config = {
     isPublic: true,
     categories: ["util"],
     emoji: "🔗",

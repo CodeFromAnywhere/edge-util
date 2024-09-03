@@ -1,10 +1,7 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.cleanupTimer = exports.getNewPerformance = void 0;
 /**
  * TODO: This stores into memory. May cause memory leaks in the long run if not cleaned up!
  */
-var timer = {};
+let timer = {};
 /**
 Function that lets you measure performance inside any function with ease.
 
@@ -39,21 +36,19 @@ cleanupTimer(executionId);
 ```
 
  */
-var getNewPerformance = function (label, uniqueId, isNew) {
-    var timePrevious = timer[uniqueId];
-    var timeNow = Date.now();
+export const getNewPerformance = (label, uniqueId, isNew) => {
+    const timePrevious = timer[uniqueId];
+    const timeNow = Date.now();
     timer[uniqueId] = timeNow;
     if (isNew)
         return;
-    var durationMs = timeNow - timePrevious;
-    return { label: label, durationMs: durationMs };
+    const durationMs = timeNow - timePrevious;
+    return { label, durationMs };
 };
-exports.getNewPerformance = getNewPerformance;
 /**
  * Ensure you run this after finishing the measurement, or you'll run into memory leaks!
  */
-var cleanupTimer = function (uniqueId) {
+export const cleanupTimer = (uniqueId) => {
     delete timer[uniqueId];
 };
-exports.cleanupTimer = cleanupTimer;
 //# sourceMappingURL=measure-performance.js.map

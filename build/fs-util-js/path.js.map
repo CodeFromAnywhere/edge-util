@@ -1,1 +1,1 @@
-{"version":3,"file":"path.js","sourceRoot":"","sources":["../../src/fs-util-js/path.ts"],"names":[],"mappings":";;;AAAO,IAAM,QAAQ,GAAG;IAAC,gBAAmB;SAAnB,UAAmB,EAAnB,qBAAmB,EAAnB,IAAmB;QAAnB,2BAAmB;;IAC1C,OAAO,MAAM,CAAC,IAAI,CAAC,GAAG,CAAC,CAAC;AAC1B,CAAC,CAAC;AAFW,QAAA,QAAQ,YAEnB"}
+{"version":3,"file":"path.js","sourceRoot":"","sources":["../../src/fs-util-js/path.ts"],"names":[],"mappings":"AAAA,MAAM,CAAC,MAAM,QAAQ,GAAG,CAAC,GAAG,MAAgB,EAAE,EAAE;IAC9C,OAAO,MAAM,CAAC,IAAI,CAAC,GAAG,CAAC,CAAC;AAC1B,CAAC,CAAC"}

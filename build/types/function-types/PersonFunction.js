@@ -1,5 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+export {};
 /**
  * `MiracleFunction` where the instance is an id of a `Person`. There can be additional context, depending on the function.
 

@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.mimeTypes = void 0;
-exports.mimeTypes = {
+export const mimeTypes = {
     //   File Extension   MIME Type
     abs: "audio/x-mpeg",
     ai: "application/postscript",

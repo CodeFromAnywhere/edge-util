@@ -1,10 +1,7 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.languages = void 0;
 /**
  * keys are the iso codes which will be saved in the db, the values are values which can be shown to the user in any UI
  */
-exports.languages = {
+export const languages = {
     // added later:
     // hebrew: "Hebrew",
     /////

@@ -1,16 +1,14 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var mergeNestedObject_js_1 = require("./mergeNestedObject.js");
-var mergeNestedObjectTest = function () {
-    var testObject = {
+import { mergeNestedObject } from "./mergeNestedObject.js";
+const mergeNestedObjectTest = () => {
+    const testObject = {
         a: "lol",
         b: 8,
         c: { x: "lol", y: 88, z: { a: "wow", b: 888, c: { x: "wow" } } },
     };
-    var result = (0, mergeNestedObject_js_1.mergeNestedObject)(testObject, {
+    const result = mergeNestedObject(testObject, {
         c: { z: { c: { x: undefined }, b: 999 } },
     });
-    console.dir({ testObject: testObject, result: result }, { depth: 999 });
+    console.dir({ testObject, result }, { depth: 999 });
 };
 mergeNestedObjectTest();
 //# sourceMappingURL=mergeNestedObject.test.js.map

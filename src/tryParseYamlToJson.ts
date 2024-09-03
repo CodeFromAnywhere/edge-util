@@ -1,5 +1,4 @@
-import jsYaml from "js-yaml";
-const { load } = jsYaml;
+import { load } from "js-yaml";
 /**
  * try-catches js-yaml to turn the yamlString into JSON
  */

@@ -1,10 +1,7 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.fileSystemConventions = exports.possibleSubExtensions = exports.subExtensions = exports.operationUnindexableNamesOrSubExtensions = exports.testFileExtension = exports.cliFileExtension = exports.frontendOptionalFileSubExtensions = exports.projectRelativeGeneratedOperationsFolder = exports.temporaryConvertedSubextension = exports.movedFileSubextension = exports.ignorableFileAndFolderNames = exports.folderNames = exports.ignorableFilenames = exports.generatedFolders = exports.turboFolderName = exports.gitFolderName = exports.nextBuildFolderName = exports.nodeModulesFolderName = exports.indexFolderName = exports.sourceFolderName = exports.databaseFolderName = exports.buildFolderName = exports.unregulatedFolders = void 0;
 /**
  * Not regulated regarding file naming conventions
  */
-exports.unregulatedFolders = [
+export const unregulatedFolders = [
     "installation",
     "cloned",
     "bundled",
@@ -27,66 +24,66 @@ exports.unregulatedFolders = [
     "httpdocs",
     ".index",
 ];
-exports.buildFolderName = "build";
-exports.databaseFolderName = "db";
-exports.sourceFolderName = "src";
+export const buildFolderName = "build";
+export const databaseFolderName = "db";
+export const sourceFolderName = "src";
 // NB: not included in generated
-exports.indexFolderName = ".index";
-exports.nodeModulesFolderName = "node_modules";
-exports.nextBuildFolderName = ".next";
-exports.gitFolderName = ".git";
-exports.turboFolderName = ".turbo";
-exports.generatedFolders = [
-    exports.buildFolderName,
-    exports.nodeModulesFolderName,
-    exports.nextBuildFolderName,
-    exports.gitFolderName,
-    exports.turboFolderName,
+export const indexFolderName = ".index";
+export const nodeModulesFolderName = "node_modules";
+export const nextBuildFolderName = ".next";
+export const gitFolderName = ".git";
+export const turboFolderName = ".turbo";
+export const generatedFolders = [
+    buildFolderName,
+    nodeModulesFolderName,
+    nextBuildFolderName,
+    gitFolderName,
+    turboFolderName,
 ];
-exports.ignorableFilenames = {
+export const ignorableFilenames = {
     dsStore: ".DS_Store",
     htaccess: ".htaccess",
     iconFile: "Icon\r",
 };
-exports.folderNames = {
-    buildFolderName: exports.buildFolderName,
-    databaseFolderName: exports.databaseFolderName,
-    sourceFolderName: exports.sourceFolderName,
-    nodeModulesFolderName: exports.nodeModulesFolderName,
-    nextBuildFolderName: exports.nextBuildFolderName,
-    gitFolderName: exports.gitFolderName,
-    turboFolderName: exports.turboFolderName,
+export const folderNames = {
+    buildFolderName,
+    databaseFolderName,
+    sourceFolderName,
+    nodeModulesFolderName,
+    nextBuildFolderName,
+    gitFolderName,
+    turboFolderName,
 };
-var projectRelativeToolsPath = "packages";
-exports.ignorableFileAndFolderNames = Object.values(exports.ignorableFilenames).concat(exports.generatedFolders);
+const projectRelativeToolsPath = "packages";
+export const ignorableFileAndFolderNames = Object.values(ignorableFilenames).concat(generatedFolders);
 /**
  * subextension indicating that a file has been moved to another location
  *
  * For example, used in `watchAppleMemos`
  */
-exports.movedFileSubextension = "moved";
+export const movedFileSubextension = "moved";
 /**
  * This is a temporary file for conversion with ffmpeg (see ffmpeg-util)
  */
-exports.temporaryConvertedSubextension = "converted";
-exports.projectRelativeGeneratedOperationsFolder = "".concat(projectRelativeToolsPath, "/generated");
+export const temporaryConvertedSubextension = "converted";
+export const projectRelativeGeneratedOperationsFolder = `${projectRelativeToolsPath}/generated`;
 /**
  * these special operations are generated, so should not be copied, but should be generated in the bundle after everything is copied
  */
-exports.frontendOptionalFileSubExtensions = [
+export const frontendOptionalFileSubExtensions = [
     "native",
     "ios",
     "android",
     "web",
 ];
-exports.cliFileExtension = "cli";
-exports.testFileExtension = "test";
-exports.operationUnindexableNamesOrSubExtensions = ["cli", "test"];
-exports.subExtensions = {
-    cliFileExtension: exports.cliFileExtension,
-    testFileExtension: exports.testFileExtension,
+export const cliFileExtension = "cli";
+export const testFileExtension = "test";
+export const operationUnindexableNamesOrSubExtensions = ["cli", "test"];
+export const subExtensions = {
+    cliFileExtension,
+    testFileExtension,
 };
-exports.possibleSubExtensions = [
+export const possibleSubExtensions = [
     "cli",
     "test",
     "native",
@@ -109,8 +106,8 @@ exports.possibleSubExtensions = [
 /**
  * All filesystem conventions in a single object for easy access
  */
-exports.fileSystemConventions = {
-    folderNames: exports.folderNames,
-    subExtensions: exports.subExtensions,
+export const fileSystemConventions = {
+    folderNames,
+    subExtensions,
 };
 //# sourceMappingURL=filename-conventions.js.map

@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.getFileTypeFromPath = void 0;
-var getFileTypeFromPath = function (path) {
+export const getFileTypeFromPath = (path) => {
     if (!path)
         return "other";
     //code
@@ -25,5 +22,4 @@ var getFileTypeFromPath = function (path) {
         return "data";
     return "other";
 };
-exports.getFileTypeFromPath = getFileTypeFromPath;
 //# sourceMappingURL=getFileTypeFromPath.js.map

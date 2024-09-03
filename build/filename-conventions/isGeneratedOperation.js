@@ -1,14 +1,9 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.isGeneratedOperationName = exports.isGeneratedOperation = void 0;
-var isGeneratedOperation = function (operationBasePath) {
+export const isGeneratedOperation = (operationBasePath) => {
     return operationBasePath.includes("/generated/");
 };
-exports.isGeneratedOperation = isGeneratedOperation;
-var isGeneratedOperationName = function (operationName) {
+export const isGeneratedOperationName = (operationName) => {
     if (!operationName)
         return false;
     return operationName === "sdk" || operationName.startsWith("sdk-");
 };
-exports.isGeneratedOperationName = isGeneratedOperationName;
 //# sourceMappingURL=isGeneratedOperation.js.map

@@ -1,11 +1,8 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.earthDistance = earthDistance;
 /**
  * returns the distance between two places (not very precise but it's very efficient)
  */
-function earthDistance(lat1, long1, lat2, long2, response) {
-    var m = Math.PI / 180;
+export function earthDistance(lat1, long1, lat2, long2, response) {
+    const m = Math.PI / 180;
     lat1 = lat1 * m;
     long1 = long1 * m;
     lat2 = lat2 * m;
