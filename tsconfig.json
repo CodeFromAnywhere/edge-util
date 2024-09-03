@@ -2,7 +2,7 @@
   "compilerOptions": {
     "rootDir": "src",
     "lib": ["ESNext", "ES2015", "DOM", "DOM.Iterable"],
-    "module": "NodeNext",
+    "module": "CommonJS",
     "target": "esnext",
     "moduleResolution": "NodeNext",
     "resolveJsonModule": true,

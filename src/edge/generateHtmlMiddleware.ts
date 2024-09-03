@@ -55,6 +55,7 @@ export const generateHtmlMiddleware = async (request: Request) => {
 
   const rawContent = await response.text();
 
+  // TODO: also take into account the profile.json etag or content to ensure all websites change when the agent itself changes.
   const hash = generateDeterministicString(rawContent);
   console.log(hash);
   const contentUrl = `https://${hash}.gptideas.com/${hash}.html`;

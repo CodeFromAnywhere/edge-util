@@ -4,9 +4,7 @@
   "main": "build/index.js",
   "version": "0.0.29",
   "type": "module",
-  "peerDependencies": {
-    "typescript": "^5.0.0"
-  },
+  "peerDependencies": {},
   "devDependencies": {
     "@types/js-yaml": "^4.0.9",
     "@types/node": "^22.5.1"
