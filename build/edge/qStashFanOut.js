@@ -3,7 +3,7 @@
  *
  * Assumes QSTASH_TOKEN and CRON_SECRET exist.
  */
-export const upstashFanOut = async (destination, context, 
+export const qStashFanOut = async (destination, context, 
 /** If the serverless provider gives too many timeouts, try delaying messages to prevent sending them all at once. E.g. if you want to send 100 per second, fill 0.01 here */
 secondDelayPerItem) => {
     const QSTASH_TOKEN = process.env.QSTASH_TOKEN;
@@ -79,4 +79,4 @@ secondDelayPerItem) => {
     }
     return { error: undefined, list };
 };
-//# sourceMappingURL=upstashFanOut.js.map
+//# sourceMappingURL=qStashFanOut.js.map

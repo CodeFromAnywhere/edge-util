@@ -1,3 +1,21 @@
+/**
+Turn types into openapi defs
+Generate a test fn, then test from there without stream
+Test  fn with stream
+Fix if needed
+
+Test tool use through openapi-chat-completion for anthropic. Should work now if above works.
+
+Create and test content-deploy agent.
+
+Make .html.md files be used as source through middleware.
+
+To optimise agents, now work on special agent tools in openapi-chat-completion? Maybe later
+
+Iterate on FE, then Ship openapisearch.com --> Show OpenAPI Initiative, ask for meeting
+
+Backend host --> backend middleware.
+*/
 function generateDeterministicString(input: string): string {
   // Simple hash function
   function simpleHash(str: string): number {
