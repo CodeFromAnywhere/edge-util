@@ -1,1 +1,0 @@
-{"version":3,"file":"FunctionParameter.d.ts","sourceRoot":"","sources":["../../../src/types/function-types/FunctionParameter.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,gBAAgB,EAAE,MAAM,0BAA0B,CAAC;AAE5D;;GAEG;AACH,MAAM,WAAW,iBAAiB;IAChC,IAAI,EAAE,MAAM,CAAC;IACb,MAAM,CAAC,EAAE,GAAG,CAAC;IACb,gBAAgB,CAAC,EAAE,gBAAgB,CAAC;IACpC,QAAQ,EAAE,OAAO,CAAC;CACnB"}

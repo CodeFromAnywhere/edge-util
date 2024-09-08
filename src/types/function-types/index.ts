@@ -1,4 +1,3 @@
-export * from "./FileFunction.js";
 export * from "./FunctionClassification.js";
 export * from "./FunctionExecution.js";
 export * from "./FunctionParameter.js";
