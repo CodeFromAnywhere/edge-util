@@ -8,6 +8,8 @@ export const qStashFanOut = async (
   context: any[],
   /** If the serverless provider gives too many timeouts, try delaying messages to prevent sending them all at once. E.g. if you want to send 100 per second, fill 0.01 here */
   secondDelayPerItem?: number,
+
+  bearerToken?: string,
 ): Promise<{ error?: string; list?: { error?: string; data?: any }[] }> => {
   const QSTASH_TOKEN = process.env.QSTASH_TOKEN;
   const CRON_SECRET = process.env.CRON_SECRET;
@@ -23,9 +25,11 @@ export const qStashFanOut = async (
       ? Math.round(index * secondDelayPerItem)
       : undefined;
 
-    const headers: { [k: string]: string } = {
-      [`Upstash-Forward-Authorization`]: `Bearer ${CRON_SECRET}`,
-    };
+    const headers: { [k: string]: string } = bearerToken
+      ? {
+          [`Upstash-Forward-Authorization`]: `Bearer ${bearerToken}`,
+        }
+      : {};
 
     if (delay) {
       headers["Upstash-Delay"] = `${delay}s`;
@@ -105,4 +109,63 @@ export const qStashFanOut = async (
   }
 
   return { error: undefined, list };
+};
+
+export const qStashSend = async (
+  destination: string,
+  context: any,
+  delaySeconds: number | undefined,
+  bearerToken: string | undefined,
+) => {
+  const QSTASH_TOKEN = process.env.QSTASH_TOKEN;
+  const CRON_SECRET = process.env.CRON_SECRET;
+  const QSTASH_BASE_URL = "https://qstash.upstash.io";
+
+  if (!QSTASH_TOKEN || !CRON_SECRET) {
+    return { error: "Missing required environment variables" };
+  }
+
+  const headers: { [k: string]: string } = bearerToken
+    ? {
+        [`Upstash-Forward-Authorization`]: `Bearer ${bearerToken}`,
+      }
+    : {};
+
+  if (delaySeconds) {
+    headers["Upstash-Delay"] = `${Math.round(delaySeconds)}s`;
+  }
+
+  const bodyString = JSON.stringify(context);
+  const totalSize = bodyString.length;
+
+  if (totalSize > 1000000) {
+    return { error: "payload too big, max 1mb per message" };
+  }
+  try {
+    const response = await fetch(
+      `${QSTASH_BASE_URL}/v2/publish/${destination}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${QSTASH_TOKEN}`,
+          ...headers,
+        },
+        body: bodyString,
+      },
+    );
+
+    if (!response.ok) {
+      const text = await response.text();
+      return {
+        error: `Batch HTTP Error! status: ${response.status} - ${response.statusText} - ${text}`,
+      };
+    }
+
+    const data = await response.json();
+
+    return { error: undefined, data };
+  } catch (e) {
+    return { error: String(e) };
+  }
 };

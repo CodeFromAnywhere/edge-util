@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.qStashFanOut = void 0;
+exports.qStashSend = exports.qStashFanOut = void 0;
 /**
  * Fan out to your own API endpoint.
  *
@@ -8,7 +8,7 @@ exports.qStashFanOut = void 0;
  */
 const qStashFanOut = async (destination, context, 
 /** If the serverless provider gives too many timeouts, try delaying messages to prevent sending them all at once. E.g. if you want to send 100 per second, fill 0.01 here */
-secondDelayPerItem) => {
+secondDelayPerItem, bearerToken) => {
     const QSTASH_TOKEN = process.env.QSTASH_TOKEN;
     const CRON_SECRET = process.env.CRON_SECRET;
     const QSTASH_BASE_URL = "https://qstash.upstash.io";
@@ -20,9 +20,11 @@ secondDelayPerItem) => {
         const delay = secondDelayPerItem
             ? Math.round(index * secondDelayPerItem)
             : undefined;
-        const headers = {
-            [`Upstash-Forward-Authorization`]: `Bearer ${CRON_SECRET}`,
-        };
+        const headers = bearerToken
+            ? {
+                [`Upstash-Forward-Authorization`]: `Bearer ${bearerToken}`,
+            }
+            : {};
         if (delay) {
             headers["Upstash-Delay"] = `${delay}s`;
         }
@@ -83,4 +85,48 @@ secondDelayPerItem) => {
     return { error: undefined, list };
 };
 exports.qStashFanOut = qStashFanOut;
+const qStashSend = async (destination, context, delaySeconds, bearerToken) => {
+    const QSTASH_TOKEN = process.env.QSTASH_TOKEN;
+    const CRON_SECRET = process.env.CRON_SECRET;
+    const QSTASH_BASE_URL = "https://qstash.upstash.io";
+    if (!QSTASH_TOKEN || !CRON_SECRET) {
+        return { error: "Missing required environment variables" };
+    }
+    const headers = bearerToken
+        ? {
+            [`Upstash-Forward-Authorization`]: `Bearer ${bearerToken}`,
+        }
+        : {};
+    if (delaySeconds) {
+        headers["Upstash-Delay"] = `${Math.round(delaySeconds)}s`;
+    }
+    const bodyString = JSON.stringify(context);
+    const totalSize = bodyString.length;
+    if (totalSize > 1000000) {
+        return { error: "payload too big, max 1mb per message" };
+    }
+    try {
+        const response = await fetch(`${QSTASH_BASE_URL}/v2/publish/${destination}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${QSTASH_TOKEN}`,
+                ...headers,
+            },
+            body: bodyString,
+        });
+        if (!response.ok) {
+            const text = await response.text();
+            return {
+                error: `Batch HTTP Error! status: ${response.status} - ${response.statusText} - ${text}`,
+            };
+        }
+        const data = await response.json();
+        return { error: undefined, data };
+    }
+    catch (e) {
+        return { error: String(e) };
+    }
+};
+exports.qStashSend = qStashSend;
 //# sourceMappingURL=qStashFanOut.js.map
