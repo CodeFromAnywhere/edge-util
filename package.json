@@ -1,7 +1,7 @@
 {
   "type": "module",
   "name": "edge-util",
-  "version": "0.0.63",
+  "version": "0.0.64",
   "description": "Useful utilities for JS, TS, but primarily for edge.",
   "main": "build/cjs/index.js",
   "module": "build/esm/index.js",
